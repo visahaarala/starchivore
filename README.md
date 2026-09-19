@@ -1,5 +1,7 @@
 # Starchivore
 
+[https://starchivore.singingtrumpet.com](https://starchivore.singingtrumpet.com)
+
 This is a simple foods explorer written with vanilla html, css & javascript.
 
 Deployed at Vercel.

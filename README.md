@@ -10,4 +10,4 @@ Peruspaketti 1 (Basic package 1)
 
 Only foods with scientific name, raw, and fiber > 0 are included.
 
-<sup>I wanted to do it vanilla since the react folder on my laptop (node_modules...) would be xxx megabytes and program bundle would be hundreds of kilobytes.</sup>
+<sup><sup>I wanted to do it vanilla since the react folder on my laptop (node_modules...) would be xxx megabytes and program bundle would be hundreds of kilobytes.</sup></sup>

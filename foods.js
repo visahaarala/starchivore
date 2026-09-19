@@ -1,4 +1,5 @@
 const response = await fetch('./foods.tsv');
+import { capitalize } from './util.js';
 
 if (!response.ok) {
   throw new Error('Failed to load foods.tsv');
@@ -18,7 +19,7 @@ const rows = tsv
 const foods = [];
 rows.forEach((row) => {
   foods.push({
-    fi: row[header.indexOf('fi')],
+    fi: capitalize(row[header.indexOf('fi')]),
     energy: row[header.indexOf('energy')],
     fat: row[header.indexOf('fat')],
     sugar: row[header.indexOf('sugar')],

@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      th,
+      td {
+        text-align: start;
+        padding-right: 1rem;
+      }
+      th {
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>starchivore</h2>
+    <p>
+      info @ <a href="github">https://github.com/visahaarala/starchivore</a>
+    </p>
+    <table>
+      <thead>
+        <tr>
+          <th id="nimi">nimi</th>
+          <th id="kuitusokeri">kuitu / sokeri</th>
+          <th id="kuiturasva">kuitu / rasva</th>
+          <th id="kuituenergia">kuitu / 2000kcal</th>
+        </tr>
+      </thead>
+      <tbody id="rows"></tbody>
+    </table>
+  </body>
+  <script type="module">
+    import foods from './foods.js';
+    import { capitalize } from './util.js';
+
+    const rows = document.querySelector('#rows');
+    const nimi = document.querySelector('#nimi');
+    const kuitusokeri = document.querySelector('#kuitusokeri');
+    const kuiturasva = document.querySelector('#kuiturasva');
+    const kuituenergia = document.querySelector('#kuituenergia');
+
+    const render = () => {
+      console.log('rendering');
+      rows.replaceChildren();
+      for (const food of foods) {
+        const row = document.createElement('tr');
+
+        const nimi = document.createElement('td');
+        nimi.textContent = capitalize(food.fi.substring(0, 20));
+        row.appendChild(nimi);
+
+        const fs = document.createElement('td');
+        fs.textContent = (food.fiber / food.sugar).toFixed(1);
+        row.appendChild(fs);
+
+        const ff = document.createElement('td');
+        ff.textContent = (food.fiber / food.fat).toFixed(1);
+        row.appendChild(ff);
+
+        const fe = document.createElement('td');
+        fe.textContent = ((food.fiber / food.energy) * 2000).toFixed(0);
+        row.appendChild(fe);
+
+        rows.appendChild(row);
+      }
+    };
+
+    nimi.addEventListener('click', () => {
+      foods.sort((a, b) => a.fi.localeCompare(b.fi));
+      render();
+    });
+
+    kuitusokeri.addEventListener('click', () => {
+      foods.sort((a, b) => a.fiber / a.sugar - b.fiber / b.sugar);
+      render();
+    });
+
+    kuiturasva.addEventListener('click', () => {
+      foods.sort((a, b) => a.fiber / a.fat - b.fiber / b.fat);
+      render();
+    });
+
+    kuituenergia.addEventListener('click', () => {
+      foods.sort((a, b) => a.fiber / a.energy - b.fiber / b.energy);
+      render();
+    });
+
+    render();
+  </script>
+</html>

@@ -57,7 +57,7 @@
     nimi.textContent = 'nimi';
     kuitusokeri.textContent = 'kuitu / sokeri';
     kuiturasva.textContent = 'kuitu / rasva';
-    kuituenergia.textContent = 'kuitu / 2000kcal';
+    kuituenergia.textContent = 'kuitu / 1000kcal';
 
     const rows = document.querySelector('#rows');
 
@@ -81,7 +81,7 @@
         row.appendChild(ff);
 
         const fe = document.createElement('td');
-        fe.textContent = ((food.fiber / food.energy) * 2000).toFixed(0);
+        fe.textContent = ((food.fiber / food.energy) * 1000).toFixed(0);
         row.appendChild(fe);
 
         rows.appendChild(row);

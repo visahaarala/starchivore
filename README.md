@@ -7,7 +7,7 @@ This is a simple foods explorer, a tool for understanding the McDougall starchiv
 Only foods with scientific name, raw, and fiber > 0 are included.  
 Plus all the seeds (not raw in the Fineli database).
 
-Website written with vanilla html, css & javascript. Data manipulation written with typescript.  
+Website in vanilla html, css & javascript. Data manipulation in typescript.  
 Deployed at Vercel.
 
 Source of data is Peruspaketti 1  

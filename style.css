@@ -1,14 +1,18 @@
+:root {
+  --bacco-white: #fcfcfc;
+}
+
 * {
   padding: 0;
   margin: 0;
-  -webkit-text-size-adjust: 100%;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
 }
 
 html {
-  /* background-color: #cbc38488; */
   display: flex;
   justify-content: center;
-  background-color: white;
+  background-color: var(--bacco-white);
 }
 
 body {
@@ -28,17 +32,53 @@ body {
 header {
   align-self: stretch;
   display: flex;
-  justify-content: space-between;
-  align-items: start;
+  align-items: center;
+
   h1 {
     display: block;
     font-size: 1.5rem;
     color: #333;
   }
+  .toggle {
+    cursor: pointer;
+    margin-top: 0.2rem;
+    background-color: #555;
+    margin-left: 1rem;
+    height: 1.1rem;
+    width: 2rem;
+    border-radius: 1.1rem;
+    position: relative;
+    border: 1px solid var(--bacco-white);
+    outline: 1px solid #222;
+    transition: all 0.1s;
+  }
+  .toggle.active {
+    background-color: #bbb;
+  }
+  .toggle::after {
+    content: '';
+    position: absolute;
+    left: 0.08rem;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 0.8rem;
+    width: 1rem;
+    border-radius: 0.8rem;
+    background-color: var(--bacco-white);
+    border: 0.05rem solid #222;
+    transition: all 0.1s;
+  }
+  .toggle.active::after {
+    left: 0.72rem;
+  }
   a {
+    align-self: start;
+    margin-left: auto;
     color: inherit;
   }
-  margin-bottom: min(2vw, 1rem);
+  /* margin-bottom: min(2vw, 1rem); */
+  margin-bottom: 2vw;
+  margin-bottom: 1.5rem;
 }
 
 table {
@@ -75,7 +115,7 @@ th {
     height: 100%;
     background-color: #333;
   }
-  padding-bottom: 0.5rem;
+  padding-bottom: 0.4rem;
 }
 td {
   font-weight: 400;
@@ -85,6 +125,7 @@ td {
 
 tr:nth-child(2n) td {
   background-color: #f4f4f4;
-  border-top: 1px solid #eee;
-  border-bottom: 1px solid #eee;
+  background-color: #eeea;
+  border-top: 1px solid #ddd6;
+  border-bottom: 1px solid #ddd6;
 }

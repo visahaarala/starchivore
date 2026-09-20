@@ -14,9 +14,7 @@ const foods = [];
 
   const lines = tsv.split(/\n/).filter((line) => line.trim() !== '');
   const header = lines[0].split(/\t/);
-  const rows = lines
-    .slice(1)
-    .map((row) => row.split(/\t/));
+  const rows = lines.slice(1).map((row) => row.split(/\t/));
 
   rows.forEach((row) => {
     foods.push({
@@ -35,6 +33,9 @@ const foods = [];
 //
 // implement logic
 
+let filteredFoods = [...foods];
+
+const toggle = document.querySelector('#toggle');
 const nimi = document.querySelector('#nimi');
 const kuitusokeri = document.querySelector('#kuitusokeri');
 const kuiturasva = document.querySelector('#kuiturasva');
@@ -43,9 +44,11 @@ const kuituenergia = document.querySelector('#kuituenergia');
 const rows = document.querySelector('#rows');
 
 const render = () => {
+  console.log('rendering');
+
   rows.replaceChildren();
 
-  for (const food of foods) {
+  for (const food of filteredFoods) {
     const row = document.createElement('tr');
 
     const nimi = document.createElement('td');
@@ -69,23 +72,39 @@ const render = () => {
   }
 };
 
+toggle.addEventListener('click', () => {
+  toggle.classList.toggle('active');
+  if (toggle.classList.contains('active')) {
+    filteredFoods = foods.filter(
+      (food) => food.fiber / food.sugar >= 0.3 && food.fiber / food.fat >= 0.45,
+    );
+  } else {
+    filteredFoods = foods;
+  }
+  render();
+});
+
 nimi.addEventListener('click', () => {
   foods.sort((a, b) => a.fi.localeCompare(b.fi));
+  filteredFoods.sort((a, b) => a.fi.localeCompare(b.fi));
   render();
 });
 
 kuitusokeri.addEventListener('click', () => {
   foods.sort((a, b) => a.fiber / a.sugar - b.fiber / b.sugar);
+  filteredFoods.sort((a, b) => a.fiber / a.sugar - b.fiber / b.sugar);
   render();
 });
 
 kuiturasva.addEventListener('click', () => {
   foods.sort((a, b) => a.fiber / a.fat - b.fiber / b.fat);
+  filteredFoods.sort((a, b) => a.fiber / a.fat - b.fiber / b.fat);
   render();
 });
 
 kuituenergia.addEventListener('click', () => {
   foods.sort((a, b) => a.fiber / a.energy - b.fiber / b.energy);
+  filteredFoods.sort((a, b) => a.fiber / a.energy - b.fiber / b.energy);
   render();
 });
 

@@ -45,8 +45,6 @@ const kuituenergia = document.querySelector('#kuituenergia');
 const rows = document.querySelector('#rows');
 
 const render = () => {
-  console.log('rendering');
-
   rows.replaceChildren();
 
   for (const food of filteredFoods) {

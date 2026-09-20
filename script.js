@@ -5,6 +5,7 @@ const response = await fetch('./foods.tsv');
 if (!response.ok) {
   throw new Error('Failed to load foods.tsv');
 }
+
 const tsv = await response.text();
 
 const foods = [];

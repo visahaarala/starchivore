@@ -113,6 +113,8 @@ compValueCsv.rows.forEach((row) => {
 //
 const filteredFoods = foods.filter((food) => {
   if (!food.scientific) return false;
+  // include seeds
+  if (food.fi.includes('SIEMEN') && !food.fi.includes('PSYLLIUM')) return true;
   if (!food.raw) return false;
   if (food.fiber === 0) return false;
   return true;
@@ -122,7 +124,6 @@ const filteredFoods = foods.filter((food) => {
 // WRITE foods.tsv
 //
 const header = Object.keys(filteredFoods.find((food) => food.scientific)!);
-console.log(header);
 const rows = filteredFoods.map((food) =>
   header.map((key) => food[key as keyof Food]),
 );

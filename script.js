@@ -40,11 +40,6 @@ const kuitusokeri = document.querySelector('#kuitusokeri');
 const kuiturasva = document.querySelector('#kuiturasva');
 const kuituenergia = document.querySelector('#kuituenergia');
 
-// nimi.textContent = 'nimi';
-// kuitusokeri.textContent = 'kuitu / sokeri';
-// kuiturasva.textContent = 'kuitu / rasva';
-// kuituenergia.textContent = 'kuitu / 1000kcal';
-
 const rows = document.querySelector('#rows');
 
 const render = () => {

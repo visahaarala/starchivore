@@ -1,4 +1,4 @@
-console.log('manipulating data..');
+console.log('preparing foods.tsv');
 import { readFileSync, writeFileSync } from 'fs';
 
 type Food = {

@@ -1,10 +1,6 @@
 # todo
 
-Links to fineli
-
-toggles for vitamin foods and energy foods
-
-mcdougall toggle
+mcdougall toggle (sugars from puolukka, fats from pellavansiemenrouhe)
 
 data-manipulation include pellavansiemenrouhe & chia seeds...
-no in fact include ALL seeds
+... in fact include ALL seeds!

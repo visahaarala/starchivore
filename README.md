@@ -10,4 +10,5 @@ Source of data is Peruspaketti 1
 (Basic package 1)  
 [https://fineli.fi/fineli/fi/avoin-data](https://fineli.fi/fineli/fi/avoin-data)
 
-Only foods with scientific name, raw, and fiber > 0 are included. Plus all the seeds (not raw in the Fineli database).
+Only foods with scientific name, raw, and fiber > 0 are included.  
+Plus all the seeds (not raw in the Fineli database).

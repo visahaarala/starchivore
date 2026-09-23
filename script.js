@@ -20,6 +20,7 @@ const foods = [];
   rows.forEach((row) => {
     foods.push({
       fi: capitalize(row[header.indexOf('fi')]),
+      en: capitalize(row[header.indexOf('en')]),
       energy: row[header.indexOf('energy')],
       fat: row[header.indexOf('fat')],
       sugar: row[header.indexOf('sugar')],
@@ -35,39 +36,69 @@ const foods = [];
 // implement logic
 
 let filteredFoods = [...foods];
+let sort = 'name'; // name/fs/ff/fe
+let lang = navigator.language.includes('fi') ? 'fi' : 'en'; // automatically get from location (muse)
 
-const toggle = document.querySelector('#toggle');
-const nimi = document.querySelector('#nimi');
-const kuitusokeri = document.querySelector('#kuitusokeri');
-const kuiturasva = document.querySelector('#kuiturasva');
-const kuituenergia = document.querySelector('#kuituenergia');
+const toggle = document.getElementById('toggle');
+const fi = document.getElementById('fi');
+const en = document.getElementById('en');
+const sort_fi = document.getElementById('sort-fi');
+const sort_en = document.getElementById('sort-en');
+const foodName = document.getElementById('name');
+const fs = document.getElementById('fs');
+const ff = document.getElementById('ff');
+const fe = document.getElementById('fe');
+// const rows = document.getElementById('rows');
+const contents = document.getElementById('table-contents');
 
-const rows = document.querySelector('#rows');
+const setTableHeaders = () => {
+  if (lang === 'fi') {
+    foodName.innerHTML = 'nimi';
+    fs.innerHTML = 'kuitu<div></div>sokeri';
+    ff.innerHTML = 'kuitu<div></div>rasva';
+    fe.innerHTML = 'kuitu<div></div>1000kcal';
+  } else {
+    foodName.innerHTML = 'name';
+    fs.innerHTML = 'fiber<div></div>sugar';
+    ff.innerHTML = 'fiber<div></div>fat';
+    fe.innerHTML = 'fiber<div></div>1000kcal';
+  }
+};
+setTableHeaders();
 
 const render = () => {
-  rows.replaceChildren();
+  switch (sort) {
+    case 'name':
+      filteredFoods.sort((a, b) => a[lang].localeCompare(b[lang]));
+      break;
+    case 'fs':
+      filteredFoods.sort((a, b) => a.fiber / a.sugar - b.fiber / b.sugar);
+      break;
+    case 'ff':
+      filteredFoods.sort((a, b) => a.fiber / a.fat - b.fiber / b.fat);
+      break;
+    case 'fe':
+      filteredFoods.sort((a, b) => a.fiber / a.energy - b.fiber / b.energy);
+      break;
+  }
 
+  contents.replaceChildren();
   for (const food of filteredFoods) {
-    const row = document.createElement('tr');
-
-    const nimi = document.createElement('td');
-    nimi.textContent = food.fi.replace('/', ' / ');
-    row.appendChild(nimi);
-
-    const fs = document.createElement('td');
+    const name = document.createElement('div');
+    name.textContent = food[lang].replace('/', ' / ');
+    name.classList.toggle('left');
+    const fs = document.createElement('div');
     fs.textContent =
       food.sugar === '0' ? '∞' : (food.fiber / food.sugar).toFixed(1);
-    row.appendChild(fs);
-
-    const ff = document.createElement('td');
+    const ff = document.createElement('div');
     ff.textContent = (food.fiber / food.fat).toFixed(1);
-    row.appendChild(ff);
-
-    const fe = document.createElement('td');
+    const fe = document.createElement('div');
     fe.textContent = ((food.fiber / food.energy) * 1000).toFixed(0);
-    row.appendChild(fe);
 
-    rows.appendChild(row);
+    contents.appendChild(name);
+    contents.appendChild(fs);
+    contents.appendChild(ff);
+    contents.appendChild(fe);
   }
 };
 
@@ -83,28 +114,38 @@ toggle.addEventListener('click', () => {
   render();
 });
 
-nimi.addEventListener('click', () => {
-  foods.sort((a, b) => a.fi.localeCompare(b.fi));
-  filteredFoods.sort((a, b) => a.fi.localeCompare(b.fi));
+fi.addEventListener('click', () => {
+  lang = 'fi';
+  setTableHeaders();
   render();
 });
 
-kuitusokeri.addEventListener('click', () => {
-  foods.sort((a, b) => a.fiber / a.sugar - b.fiber / b.sugar);
-  filteredFoods.sort((a, b) => a.fiber / a.sugar - b.fiber / b.sugar);
+en.addEventListener('click', () => {
+  lang = 'en';
+  setTableHeaders();
   render();
 });
 
-kuiturasva.addEventListener('click', () => {
-  foods.sort((a, b) => a.fiber / a.fat - b.fiber / b.fat);
-  filteredFoods.sort((a, b) => a.fiber / a.fat - b.fiber / b.fat);
+foodName.addEventListener('click', () => {
+  sort = 'name';
   render();
 });
 
-kuituenergia.addEventListener('click', () => {
-  foods.sort((a, b) => a.fiber / a.energy - b.fiber / b.energy);
-  filteredFoods.sort((a, b) => a.fiber / a.energy - b.fiber / b.energy);
+fs.addEventListener('click', () => {
+  sort = 'fs';
+  render();
+});
+
+ff.addEventListener('click', () => {
+  sort = 'ff';
+  render();
+});
+
+fe.addEventListener('click', () => {
+  sort = 'fe';
   render();
 });
 
 render();
+
+// make opacity 1 for tbody after loading

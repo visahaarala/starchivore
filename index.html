@@ -3,36 +3,39 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#fcfcfc">
+    <meta name="theme-color" content="#fcfcfc" />
     <title>starchivore</title>
     <link rel="stylesheet" href="style.css" />
     <script type="module" src="script.js"></script>
   </head>
   <body>
     <header>
-      <h1>starchivore</h1>
-      <div class="toggle" id="toggle"></div>
-      <a href="https://github.com/visahaarala/starchivore">info</a>
+      <div class="top">
+        <h1>starchivore</h1>
+        <div class="toggle" id="toggle"></div>
+        <div class="lang">
+          <span id="en">en</span> / <span id="fi">fi</span>
+        </div>
+        <a href="https://github.com/visahaarala/starchivore">info</a>
+      </div>
+
+      <div class="table-header grid">
+        <div id="name" class="sort left"></div>
+        <div id="fs" class="sort"></div>
+        <div id="ff" class="sort"></div>
+        <div id="fe" class="sort"></div>
+      </div>
     </header>
-    <table>
+
+    <div id="table-contents" class="table-contents grid"></div>
+
+    <table style="display: none">
       <thead>
         <tr>
-          <th id="nimi">nimi</th>
-          <th id="kuitusokeri">
-            kuitu
-            <div></div>
-            sokeri
-          </th>
-          <th id="kuiturasva">
-            kuitu
-            <div></div>
-            rasva
-          </th>
-          <th id="kuituenergia">
-            kuitu
-            <div></div>
-            1000kcal
-          </th>
+          <th id="name"></th>
+          <th id="fs"></th>
+          <th id="ff"></th>
+          <th id="fe"></th>
         </tr>
       </thead>
       <tbody id="rows"></tbody>

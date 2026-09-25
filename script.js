@@ -48,8 +48,7 @@ const foodName = document.getElementById('name');
 const fs = document.getElementById('fs');
 const ff = document.getElementById('ff');
 const fe = document.getElementById('fe');
-// const rows = document.getElementById('rows');
-const contents = document.getElementById('table-contents');
+const tbody = document.querySelector('tbody');
 
 const setTableHeaders = () => {
   if (lang === 'fi') {
@@ -82,23 +81,27 @@ const render = () => {
       break;
   }
 
-  contents.replaceChildren();
+  tbody.replaceChildren();
   for (const food of filteredFoods) {
-    const name = document.createElement('div');
+    const tr = document.createElement('tr');
+
+    const name = document.createElement('td');
     name.textContent = food[lang].replace('/', ' / ');
     name.classList.toggle('left');
-    const fs = document.createElement('div');
+    const fs = document.createElement('td');
     fs.textContent =
       food.sugar === '0' ? '∞' : (food.fiber / food.sugar).toFixed(1);
-    const ff = document.createElement('div');
+    const ff = document.createElement('td');
     ff.textContent = (food.fiber / food.fat).toFixed(1);
-    const fe = document.createElement('div');
+    const fe = document.createElement('td');
     fe.textContent = ((food.fiber / food.energy) * 1000).toFixed(0);
 
-    contents.appendChild(name);
-    contents.appendChild(fs);
-    contents.appendChild(ff);
-    contents.appendChild(fe);
+    tr.appendChild(name);
+    tr.appendChild(fs);
+    tr.appendChild(ff);
+    tr.appendChild(fe);
+
+    tbody.appendChild(tr);
   }
 };
 

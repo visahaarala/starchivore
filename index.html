@@ -3,14 +3,14 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#fcfcfc" />
+    <meta name="theme-color" content="eee" />
     <title>starchivore</title>
     <link rel="stylesheet" href="style.css" />
     <script type="module" src="script.js"></script>
   </head>
   <body>
     <header>
-      <div class="top">
+      <div class="top padding-sides">
         <h1>starchivore</h1>
         <div class="toggle" id="toggle"></div>
         <div class="lang">
@@ -19,26 +19,22 @@
         <a href="https://github.com/visahaarala/starchivore">info</a>
       </div>
 
-      <div class="table-header grid">
-        <div id="name" class="sort left"></div>
-        <div id="fs" class="sort"></div>
-        <div id="ff" class="sort"></div>
-        <div id="fe" class="sort"></div>
-      </div>
+      <table class="padding-sides">
+        <thead>
+          <tr>
+            <th id="name" class="sort left"></th>
+            <th id="fs" class="sort"></th>
+            <th id="ff" class="sort"></th>
+            <th id="fe" class="sort"></th>
+          </tr>
+        </thead>
+      </table>
+
+      <div class="hr"></div>
     </header>
 
-    <div id="table-contents" class="table-contents grid"></div>
-
-    <table style="display: none">
-      <thead>
-        <tr>
-          <th id="name"></th>
-          <th id="fs"></th>
-          <th id="ff"></th>
-          <th id="fe"></th>
-        </tr>
-      </thead>
-      <tbody id="rows"></tbody>
+    <table class="padding-sides">
+      <tbody></tbody>
     </table>
   </body>
 </html>

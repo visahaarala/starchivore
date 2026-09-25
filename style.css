@@ -1,5 +1,5 @@
 :root {
-  --bacco-white: #fcfcfc;
+  --background-color-header: #eee;
 }
 
 * {
@@ -10,38 +10,30 @@
 }
 
 html {
-  display: flex;
-  justify-content: center;
-  background-color: var(--bacco-white);
+  background-color: white;
 }
 
 body {
-  width: 100%;
-  max-width: 40rem;
-  margin: 0 3vw min(2vw, 1.5rem);
-
   color: #222;
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  margin-bottom: 0.5rem;
 }
 
-.grid {
-  display: grid;
-  grid-template-columns: auto repeat(3, 3.6rem);
+.padding-sides {
+  width: 100%;
+  padding-right: calc((100% - 40rem) / 2);
+  padding-left: calc((100% - 40rem) / 2);
 }
 
 header {
   position: sticky;
   top: 0;
-
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-  padding: max(1.5rem, min(5vw, 3.5rem)) 0 0.5rem;
-  margin-bottom: 0.2rem;
-  background-color: var(--bacco-white);
-  border-bottom: 1px solid #ccc;
+  background-color: var(--background-color-header);
 
   .top {
+    padding-top: max(1.5rem, min(5vw, 3.5rem));
+    padding-bottom: 1.5rem;
+
     display: flex;
     align-items: center;
     gap: 1.5rem;
@@ -58,7 +50,7 @@ header {
       width: 2rem;
       border-radius: 1.1rem;
       position: relative;
-      border: 1px solid var(--bacco-white);
+      border: 1px solid white;
       outline: 1px solid #222;
     }
     .toggle.active {
@@ -74,7 +66,7 @@ header {
       height: 0.8rem;
       width: 1rem;
       border-radius: 0.8rem;
-      background-color: var(--bacco-white);
+      background-color: white;
       border: 0.05rem solid #222;
     }
     .toggle.active::after {
@@ -93,88 +85,59 @@ header {
       color: inherit;
     }
   }
-
-  .table-header {
-    .sort {
-      display: flex;
-      flex-direction: column;
-      justify-content: end;
-
-      font-size: 0.9em;
-      font-weight: 600;
-      text-transform: capitalize;
-      text-align: center;
-      cursor: pointer;
-      div {
-        width: 100%;
-        height: 1px;
-        position: relative;
-      }
-      div::after {
-        content: '';
-        position: absolute;
-        left: 15%;
-        width: 70%;
-        height: 100%;
-        background-color: #333;
-      }
-    }
+  .hr {
+    border-bottom: 1px solid #222;
   }
 }
 
-.table-contents {
-  /* margin-top: 6rem; */
-  text-align: center;
-}
-
-.left {
-  justify-self: start;
-}
-
-/* table {
-  width: 100%;
+table {
   border-spacing: 0;
-}
-
-th,
-td {
-  text-align: start;
-}
-th ~ th,
-td ~ td {
-  width: 3.6rem;
   text-align: center;
-}
-th {
-  font-size: 0.9em;
-  font-weight: 600;
-  text-transform: capitalize;
-  vertical-align: bottom;
-  cursor: pointer;
-  div {
-    width: 100%;
-    height: 1px;
-    position: relative;
-  }
-  div::after {
-    content: '';
-    position: absolute;
-    left: 15%;
-    width: 70%;
-    height: 100%;
-    background-color: #333;
-  }
-  padding-bottom: 0.4rem;
-}
-td {
-  font-weight: 400;
-  vertical-align: top;
-  padding: 0.15rem 0;
-}
 
-tr:nth-child(2n) td {
-  background-color: #f4f4f4;
-  background-color: #eeea;
-  border-top: 1px solid #ddd6;
-  border-bottom: 1px solid #ddd6;
-} */
+  .left {
+    text-align: left;
+  }
+
+  th ~ th,
+  td ~ td {
+    width: 3.6rem;
+  }
+
+  th {
+    font-size: 0.9em;
+    font-weight: 600;
+    text-transform: capitalize;
+    vertical-align: bottom;
+    cursor: pointer;
+    div {
+      width: 100%;
+      height: 1px;
+      position: relative;
+    }
+    div::after {
+      content: '';
+      position: absolute;
+      left: 15%;
+      width: 70%;
+      height: 100%;
+      background-color: #333;
+    }
+    padding-bottom: 0.4rem;
+  }
+
+  td {
+    padding: 0.2rem 0;
+    vertical-align: top;
+  }
+
+  tr:first-child td {
+    padding-top: 0.5rem;
+  }
+
+  tr:nth-child(2n) td {
+    background-color: #f4f4f4;
+    background-color: #eeea;
+    border-top: 1px solid #ddd6;
+    border-bottom: 1px solid #ddd6;
+  }
+}

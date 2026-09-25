@@ -1,6 +1,6 @@
 {
-  "name": "starchivore",
-  "short_name": "My starchivore",
+  "name": "Starchivore",
+  "short_name": "Starchivore",
   "start_url": "./",
   "display": "standalone",
   "icons": [

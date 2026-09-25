@@ -3,7 +3,13 @@ self.addEventListener('install', (event) => {
     caches
       .open('v1')
       .then((cache) =>
-        cache.addAll(['./', './foods.tsv', './script.js', './style.css']),
+        cache.addAll([
+          './',
+          './index.html',
+          './foods.tsv',
+          './script.js',
+          './style.css',
+        ]),
       ),
   );
 });

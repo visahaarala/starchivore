@@ -1,0 +1,6 @@
+{
+  "name": "starchivore",
+  "short_name": "My starchivore",
+  "start_url": "./",
+  "display": "standalone"
+}

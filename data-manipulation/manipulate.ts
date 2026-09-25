@@ -113,6 +113,7 @@ compValueCsv.rows.forEach((row) => {
 //
 const filteredFoods = foods.filter((food) => {
   if (!food.scientific) return false;
+
   // exclude some processing
   if (food.en.includes('FRIED') || food.en.includes('VACUUM')) return false;
   // include seeds

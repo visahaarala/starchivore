@@ -1,5 +1,30 @@
+// finish header before showing document
+
+let lang = navigator.language.includes('fi') ? 'fi' : 'en'; // automatically get from location (muse)
+const foodName = document.getElementById('name');
+const fs = document.getElementById('fs');
+const ff = document.getElementById('ff');
+const fe = document.getElementById('fe');
+
+const setTableHeaders = () => {
+  if (lang === 'fi') {
+    foodName.innerHTML = 'nimi';
+    fs.innerHTML = 'kuitu<div></div>sokeri';
+    ff.innerHTML = 'kuitu<div></div>rasva';
+    fe.innerHTML = 'kuitu<div></div>1000kcal';
+  } else {
+    foodName.innerHTML = 'name';
+    fs.innerHTML = 'fiber<div></div>sugar';
+    ff.innerHTML = 'fiber<div></div>fat';
+    fe.innerHTML = 'fiber<div></div>1000kcal';
+  }
+};
+setTableHeaders();
+
+document.documentElement.style.opacity = 1;
+
 //
-// load foods
+// load foods data
 
 const response = await fetch('./foods.tsv');
 if (!response.ok) {
@@ -37,33 +62,13 @@ const foods = [];
 
 let filteredFoods = [...foods];
 let sort = 'name'; // name/fs/ff/fe
-let lang = navigator.language.includes('fi') ? 'fi' : 'en'; // automatically get from location (muse)
 
 const toggle = document.getElementById('toggle');
 const fi = document.getElementById('fi');
 const en = document.getElementById('en');
 const sort_fi = document.getElementById('sort-fi');
 const sort_en = document.getElementById('sort-en');
-const foodName = document.getElementById('name');
-const fs = document.getElementById('fs');
-const ff = document.getElementById('ff');
-const fe = document.getElementById('fe');
 const tbody = document.querySelector('tbody');
-
-const setTableHeaders = () => {
-  if (lang === 'fi') {
-    foodName.innerHTML = 'nimi';
-    fs.innerHTML = 'kuitu<div></div>sokeri';
-    ff.innerHTML = 'kuitu<div></div>rasva';
-    fe.innerHTML = 'kuitu<div></div>1000kcal';
-  } else {
-    foodName.innerHTML = 'name';
-    fs.innerHTML = 'fiber<div></div>sugar';
-    ff.innerHTML = 'fiber<div></div>fat';
-    fe.innerHTML = 'fiber<div></div>1000kcal';
-  }
-};
-setTableHeaders();
 
 const render = () => {
   switch (sort) {
@@ -150,5 +155,3 @@ fe.addEventListener('click', () => {
 });
 
 render();
-
-// make opacity 1 for tbody after loading
